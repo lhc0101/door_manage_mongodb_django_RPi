@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>门禁日志信息查询</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+<body>
+<style type="text/css">
+    h2{text-align: center;}
+    div{border: 1px solid red;width: 600px;height: 400px;style-size: 450px;}
+</style>
+    <h2>门禁日志信息查询</h2>
+    <a href="/index"><input type="button" value="门禁管理首页"></a>
+    <a href="/logs"><input type="button" value="日志查询首页"></a>
+    <form action="/logtoquery/" method="Post">
+        卡片 ID： <input type="text" name="number" style="width: 500px"><br>
+        姓名：<input type="text" name="name" style="width: 500px"><br>
+        <input type="submit" value="提交查询">
+
+    </form>
+
+</body>
+</html>

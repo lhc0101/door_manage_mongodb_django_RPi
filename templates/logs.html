@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+<body>
+<style type="text/css">
+    h2{text-align: center;}
+    div{border: 1px solid red;width: 600px;height: 400px;style-size: 450px;}
+</style>
+    <h2>门禁日志查询系统</h2>
+    <a href="/index"><input type="button" value="门禁管理首页"></a>
+    <a href="/logquery"><input type="button" value="日志按条件查询"></a>
+    <table>
+        <thead>
+            <th>卡片 ID</th>
+            <th>姓名</th>
+            <th>日志信息</th>
+        </thead>
+        <tbody>
+            {% for item in log %}
+                <tr>
+                    <td>{{ item.number }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.log }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="6">
+                    {% if log.has_previous %}
+                    <a href="?page={{ log.previous_page_number }}"><input type="button" value="上一页"></a>
+                    {% endif %}
+                    <span>{{ log.number }} of {{ log.paginator.num_pages }}</span>
+                    {% if log.has_next %}
+                        <a href="?page={{ log.next_page_number }}"><input type="button" value="下一页"></a>
+                    {% endif %}
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

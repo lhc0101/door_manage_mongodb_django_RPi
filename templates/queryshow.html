@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询显示</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../static/css/index_work.css">
+<body>
+<style type="text/css">
+    h2{text-align: center;}
+    div{border: 1px solid red;width: 600px;height: 400px;style-size: 450px;}
+</style>
+    <h2>查询结果</h2>
+    <a href="/index"><input type="button" value="门禁管理首页"></a>
+    <a href="/logs"><input type="button" value="日志查询首页"></a>
+    <a href="/toAdd"><input type="button" value="添加"></a>
+    <a href="/query"><input type="button" value="查询"></a>
+    <table>
+        <thead>
+            <th>卡片 ID</th>
+            <th>姓名</th>
+            <th>操作</th>
+        </thead>
+        <tbody>
+            {% for i in invitation %}
+                <tr>
+                    <td>{{ i.number }}</td>
+                    <td>{{ i.name }}</td>
+                <td>
+                        <a href="/toUpdate/?number={{ i.number }}"><input type="button" value="修改"></a>
+                        <a href="/delete/?number={{ i.number }}"><input type="button" value="删除"></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th colspan="6">
+                    {% if i.has_previous %}
+                    <a href="?page={{ i.previous_page_number }}"><input type="button" value="上一页"></a>
+                    {% endif %}
+                    <span>{{ i.number }} of {{ i.paginator.num_pages }}</span>
+                    {% if i.has_next %}
+                        <a href="?page={{ i.next_page_number }}"><input type="button" value="下一页"></a>
+                    {% endif %}
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
