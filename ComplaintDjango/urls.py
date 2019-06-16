@@ -19,7 +19,7 @@ from django.urls import path
 from cmdb  import views
 urlpatterns = [
     path('index/',views.index),
-    # path('/',views.index),
+    path('',views.index),
     path('query',views.query),
      # path('queryshow',views.queryshow),
     path('toAdd/',views.toAdd),

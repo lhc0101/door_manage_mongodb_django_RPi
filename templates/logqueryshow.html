@@ -21,7 +21,7 @@
             <th>日志信息</th>
         </thead>
         <tbody>
-            {% for i in invitation %}
+            {% for i in pag %}
                 <tr>
                     <td>{{ i.number }}</td>
                     <td>{{ i.name }}</td>
@@ -30,12 +30,12 @@
             {% endfor %}
             <tr>
                 <th colspan="6">
-                    {% if i.has_previous %}
-                    <a href="?page={{ i.previous_page_number }}"><input type="button" value="上一页"></a>
+                    {% if pag.has_previous %}
+                    <a href="?page={{ pag.previous_page_number }}"><input type="button" value="上一页"></a>
                     {% endif %}
-                    <span>{{ i.number }} of {{ i.paginator.num_pages }}</span>
-                    {% if i.has_next %}
-                        <a href="?page={{ i.next_page_number }}"><input type="button" value="下一页"></a>
+                    <span>{{ pag.number }} of {{ pag.paginator.num_pages }}</span>
+                    {% if pag.has_next %}
+                        <a href="?page={{ pag.next_page_number }}"><input type="button" value="下一页"></a>
                     {% endif %}
                 </th>
             </tr>

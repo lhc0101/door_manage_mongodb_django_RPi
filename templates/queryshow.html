@@ -34,12 +34,12 @@
             {% endfor %}
             <tr>
                 <th colspan="6">
-                    {% if i.has_previous %}
-                    <a href="?page={{ i.previous_page_number }}"><input type="button" value="上一页"></a>
+                    {% if invitation.has_previous %}
+                    <a href="?page={{ invitation.previous_page_number }}"><input type="button" value="上一页"></a>
                     {% endif %}
-                    <span>{{ i.number }} of {{ i.paginator.num_pages }}</span>
-                    {% if i.has_next %}
-                        <a href="?page={{ i.next_page_number }}"><input type="button" value="下一页"></a>
+                    <span>{{ invitation.number }} of {{ invitation.paginator.num_pages }}</span>
+                    {% if invitation.has_next %}
+                        <a href="?page={{ invitation.next_page_number }}"><input type="button" value="下一页"></a>
                     {% endif %}
                 </th>
             </tr>

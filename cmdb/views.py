@@ -67,18 +67,24 @@ def query(request):
     return render_to_response("query.html")
 
 def toquery(request):
+    global invi6
     if request.method == 'POST':
         number = request.POST.get("number", None)
         name  = request.POST.get("name",None)
+        invi2 = invitation.objects.filter(number=number)
+        iniv4 = invitation.objects.filter(name = name)
+        invi6 = invi2 or iniv4
 
-    invi2 = invitation.objects.filter(number=number)
-
-    iniv4 = invitation.objects.filter(name = name)
-
-    invi5 = invi2 or iniv4
+    # 限制每一页显示的条目数量
+    limit = 10
+    article = invi6
+    paginator = Paginator(article, limit)
+    # 从url中获取页码参数
+    page_num = request.GET.get('page', 1)
+    loaded = paginator.page(page_num)
 
     grade1 = {
-        'invitation':invi5
+        'invitation':loaded
         }
     return render(request,"queryshow.html",grade1)
 
@@ -92,6 +98,7 @@ def logs(request):
     # 从url中获取页码参数
     page_num = request.GET.get('page',1)
     loaded = paginator.page(page_num)
+    print(loaded)
     grade = {
         'log':loaded
     }
@@ -103,18 +110,24 @@ def logquery(request):
     return render_to_response("logquery.html")
 
 def logtoquery(request):
+    global invi5
     if request.method == 'POST':
         number = request.POST.get("number", None)
         name  = request.POST.get("name",None)
+        invi2 = log.objects.filter(number=number)
+        iniv4 = log.objects.filter(name = name)
+        invi5 = invi2 or iniv4
 
-    invi2 = log.objects.filter(number=number)
-
-    iniv4 = log.objects.filter(name = name)
-
-    invi5 = invi2 or iniv4
+    # 限制每一页显示的条目数量
+    limit = 10
+    article = invi5
+    paginator = Paginator(article, limit)
+    # 从url中获取页码参数
+    page_num = request.GET.get('page', 1)
+    loaded = paginator.page(page_num)
 
     grade1 = {
-        'log':invi5
+        'pag':loaded
         }
     return render(request,"logqueryshow.html",grade1)
 
